@@ -1,6 +1,7 @@
 <h1>About</h1>
 <p></p>
-<p>這個倉儲位於 <a href="https://github.com/mdecourse/cmstemplate">https://github.com/mdecourse/cmstemplate</a> 是一個能夠與 Github Pages, Gitlab Pages 以及 Heroku 結合的網際內容管理系統.</p><h1>Hint</h1>
+<p>這個倉儲位於 <a href="https://github.com/mdecourse/cmstemplate">https://github.com/mdecourse/cmstemplate</a> 是一個能夠與 Github Pages, Gitlab Pages 以及 Heroku 結合的網際內容管理系統.</p>
+<h1>Hint</h1>
 <ol>
 <li>是否了解如何設定 Github Pages?</li>
 <li>是否了解如何設定 Gitlab Pages?</li>
@@ -22,7 +23,9 @@
 <ol>
 <li>著手利用 Python 解決各類問題</li>
 <li>利用 Python 修改 Solidworks 與 Inventor 零件尺寸</li>
-</ol><h2>gitlab-ci.yml</h2>
+</ol>
+<h2>gitlab-ci.yml</h2>
+<p>標題不能使用 .gitlab-ci.yml 因為轉為 content/.gitlab-ci.yml 時, 無法從 content/.github-ci.yml 呼叫.</p>
 <p>.gitlab-ci.yml 是在 Gitlab Pages 設定過程中將靜態網頁轉存並伺服的 continuout integration 設定檔案.</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">pages:
   stage: deploy
@@ -36,7 +39,8 @@
   only:
   - master
 variables:
-  GIT_SUBMODULE_STRATEGY: recursive</pre><h1>CMSiMDE</h1>
+  GIT_SUBMODULE_STRATEGY: recursive</pre>
+<h1>CMSiMDE</h1>
 <p>網際內容管理系統</p>
 <p>Web-based Content Management System</p>
 <p><a href="https://learnmech.com/">https://learnmech.com/</a></p>
@@ -44,23 +48,70 @@ variables:
 <p><a href="https://imechanica.org/">https://imechanica.org/</a> </p>
 <p><a href="https://info.traceparts.com/use-and-manage-3d-cad-models/download-free-cad-models/">https://info.traceparts.com/use-and-manage-3d-cad-models/download-free-cad-models/</a> </p>
 <p><a href="https://bookboon.com/en">https://bookboon.com/en</a> </p>
-<p></p><h2>CMSiMDE 程式架構</h2>
+<p></p>
+<h2>CMSiMDE 程式架構</h2>
 <p>動態網頁的主要檔案為 config/content.htm</p>
 <p>當使用者在命令列中將目錄更換到 cmsimde, 然後以 python wsgi.py 執行 wsgi.py 程式時, 其實 Python 程式是仰賴 Flask 網際框架結構來進行資料伺服.</p>
-<p>CMSiMDE 的作動需要 Flask 網際框架, 需要 bs4 與 lxml 進行 content.htm 的頁面解讀, 透過超文件檔案中的 h1, h2 與 h3 由上到下執行循序式分頁, 之後再透過 Javascript 與 css 將 h1, h2, h3 依照樹狀結構, h1 標題為第一階, h2 為第二階, h3 為第三階.</p><h3>為何需要網際內容管理</h3>
-<p>全球資訊網無遠弗屆, 而且 WWW 的伺服架構相對於手機 APP 對於使用者而言更加友善, 除了允許多重身分無需實名綁定之外, 可以讓工程師進行各種協同設計, 因此若能廣泛利用網際環境建立各種應用程式環境, 將有助提升設計效益.</p><h3>如何建立 CMSiMDE 子模組</h3>
+<p>CMSiMDE 的作動需要 Flask 網際框架, 需要 bs4 與 lxml 進行 content.htm 的頁面解讀, 透過超文件檔案中的 h1, h2 與 h3 由上到下執行循序式分頁, 之後再透過 Javascript 與 css 將 h1, h2, h3 依照樹狀結構, h1 標題為第一階, h2 為第二階, h3 為第三階.</p>
+<h3>為何需要網際內容管理</h3>
+<p>全球資訊網無遠弗屆, 而且 WWW 的伺服架構相對於手機 APP 對於使用者而言更加友善, 除了允許多重身分無需實名綁定之外, 可以讓工程師進行各種協同設計, 因此若能廣泛利用網際環境建立各種應用程式環境, 將有助提升設計效益.</p>
+<h3>如何建立 CMSiMDE 子模組</h3>
 <p>git submodule add <a href="https://github.com/mdecourse/cmsimde.git">https://github.com/mdecourse/cmsimde.git</a> cmsimde</p>
-<p>表示要透過 git submodule add 將 <a href="https://github.com/mdecourse/cmsimde.git">https://github.com/mdecourse/cmsimde.git</a> 遠端倉儲當作子模組, 而且將資料存入子目錄 cmsimde 中.</p><h3>為何需要以子模組的設計</h3>
-<p>在一個倉儲中帶有子模組的用意是善用分散式設計的做法, 子模組代表一個非由倉儲管理者維護權限所及的單位模組. 意即, 倉儲中程式的執行需要子模組中的資料, 但是倉儲擁有者將子模組視為獨立元件, 並不需要對子模組的內容進行改版. 一旦子模組原始倉儲資料更新, 採用子模組的各倉儲所有者可以決定是否配合跟進, 若不跟進仍有使用既有版本的子模組繼續運作, 原始子模組與採用不同版本子模組的倉儲都不會彼此受到影響.</p><h3>兩種不同的 git clone</h3>
+<p>表示要透過 git submodule add 將 <a href="https://github.com/mdecourse/cmsimde.git">https://github.com/mdecourse/cmsimde.git</a> 遠端倉儲當作子模組, 而且將資料存入子目錄 cmsimde 中.</p>
+<h3>為何需要以子模組的設計</h3>
+<p>在一個倉儲中帶有子模組的用意是善用分散式設計的做法, 子模組代表一個非由倉儲管理者維護權限所及的單位模組. 意即, 倉儲中程式的執行需要子模組中的資料, 但是倉儲擁有者將子模組視為獨立元件, 並不需要對子模組的內容進行改版. 一旦子模組原始倉儲資料更新, 採用子模組的各倉儲所有者可以決定是否配合跟進, 若不跟進仍有使用既有版本的子模組繼續運作, 原始子模組與採用不同版本子模組的倉儲都不會彼此受到影響.</p>
+<h3>兩種不同的 git clone</h3>
 <p>git clone <a href="https://github.com/mdecourse/cmsimde.git">https://github.com/mdecourse/cmsimde.git</a></p>
 <p>表示要將 cmsimde 倉儲的資料 clone 到近端, 針對沒有子模組設置的倉儲可以直接以 git clone 取下倉儲資料</p>
 <p>git clone --recurse-submodules <a href="https://github.com/mdecourse/cp2020.git">https://github.com/mdecourse/cp2020.git</a></p>
-<p>表示要將 cp2020 倉儲中包含個子模組與可能子模組中的子模組等資料, 全部 clone 到近端.</p><h3>假如 CMSiMDE 不設為子模組</h3>
-<p>其實各用戶若希望自行維護 CMSiMDE 網際內容管理系統, 可以直接取下 CMSiMDE 程式資料, 然後將倉儲資料放在 cmsimde 子目錄中, 並將 up_dir 中的資料複製一份到倉儲根目錄, 如此就可以依 CMSiMDE 的用法使用動態與靜態網頁.</p><h3>為何需要有動態網頁與靜態網頁</h3>
+<p>表示要將 cp2020 倉儲中包含個子模組與可能子模組中的子模組等資料, 全部 clone 到近端.</p>
+<h3>假如 CMSiMDE 不設為子模組</h3>
+<p>其實各用戶若希望自行維護 CMSiMDE 網際內容管理系統, 可以直接取下 CMSiMDE 程式資料, 然後將倉儲資料放在 cmsimde 子目錄中, 並將 up_dir 中的資料複製一份到倉儲根目錄, 如此就可以依 CMSiMDE 的用法使用動態與靜態網頁.</p>
+<h3>為何需要有動態網頁與靜態網頁</h3>
 <p>所謂的動態網頁指的是有登入系統配置的網際內容管理系統, 當使用者登入後進行內容管理, 網站會馬上呈現新版本內容, 通常無需進行網頁轉換.</p>
 <p>所謂的靜態網頁則指網站通常沒有登入系統的配置, 而且通常只包含 html 與 Javascript 資料, 由於沒有登入系統, 因此沒有內容被駭的問題, 除非負責伺服超文件網頁的系統遭駭.</p>
-<p>而 CMSiMDE 的動態網頁用於編輯網站內容, 而靜態網頁則可以利用 Github Pages, Gitlab Pages 與 Heroku 進行伺服.</p><h3>CMSiMDE 有甚麼使用上的限制嗎比方說能夠使用那些特殊符號, 為什麼不能使用分號, 以及所謂的標題有沒有最多幾個字元的限制, 另外就是假如標題過長, 會發生甚麼狀況與後果</h3>
+<p>而 CMSiMDE 的動態網頁用於編輯網站內容, 而靜態網頁則可以利用 Github Pages, Gitlab Pages 與 Heroku 進行伺服.</p>
+<h3>CMSiMDE 有甚麼使用上的限制嗎比方說能夠使用那些特殊符號, 為什麼不能使用分號, 以及所謂的標題有沒有最多幾個字元的限制, 另外就是假如標題過長, 會發生甚麼狀況與後果</h3>
 <p>假如在上列頁面標題中加上兩個 "?", 上面這個標題就無法順利分頁, 但是利用 SciTE 編輯 config/content.htm 之後將兩個 "?" 刪除後則可以正確完成分頁.</p>
 <p>上面的標題字元數超過 80 個, 雖可正常分頁但是在資料展示上就顯得不很方便.</p>
 <p>CMSiMDE 標題不能使用 ":" 的原因在於 Windows 操作系統不允許檔案名稱中有 ":", 因此當 CMSiMDE 動態轉靜態時必須以頁面標題作為該頁的檔案名稱, 而無法完成靜態頁面存檔的問題會讓 CMSiMDE 無法順利將動態資料轉為靜態資料.</p>
-<p></p>
+<h1>hw1</h1>
+<h2>p84</h2>
+<p><strong>overviem(<span title="Quick scroll up">概觀)</span></strong></p>
+<div class="section" id="N1067F">
+<div class="sectionContain">
+<p id="N10685" lang="">In this module, we’re going to discuss the various types of network media. We will begin with fiber-optic cable and then discuss twisted pair cable and coaxial cable. For each of these cable types, we will discuss appearance, characteristics, and types of connectors, as well as speed and limitations.</p>
+<p lang="">在本模塊中，我們將討論各種類型的網絡媒體。 我們將從光纖電纜開始，然後討論雙絞線電纜和同軸電纜。 對於每種電纜類型，我們將討論連接器的外觀，特性和類型，以及速度和限制。</p>
+<p lang=""><strong>Fiber-Optic Cable(光纖電纜)</strong></p>
+</div>
+</div>
+<div class="section" id="fiber_cable">
+<div class="sectionContain">
+<p id="N10692" lang="">Fiber-optic cables are constructed by using a glass core at the center of the cable that is surrounded by cladding. In order to send data from one end of the cable to the other, light from a light-emitting diode (LED) or laser is used to transmit the signal down the glass fiber at the center of the cable. Because the data is being transmitted using light, it is immune to the effects of electromagnetic interference (EMI) that impact traditional copper-based cables, such as twisted pair and coaxial cables. Fiber-optic cables possess the ability to send the data a very far distance (many miles) without the use of a repeater. They also can carry a significant amount of data due to their large bandwidth and the information traveling at light speed. Their bandwidth can be measured in gigabits or even terabits per second. There are two types of fiber cables: multimode and single-mode fiber.</p>
+<p lang="">光纖電纜是通過在電纜的中心使用玻璃芯構成的，該芯層被包層圍繞。 為了將數據從電纜的一端發送到另一端，可使用來自發光二極管（LED）或激光的光沿電纜中心的玻璃纖維向下傳輸信號。 由於數據是通過光傳輸的，因此不受電磁干擾（EMI）的影響，這些電磁干擾會影響傳統的銅基電纜，如雙絞線和同軸電纜。 光纖具有無需使用中繼器就可以很遠的距離（許多英里）發送數據的能力。 由於它們的大帶寬和以光速傳播的信息，它們還可以攜帶大量數據。 它們的帶寬可以每秒千兆比特或什至兆兆比特來度量。 光纖電纜有兩種類型：多模和單模光纖。</p>
+<div class="imagewrap"><span class="image"><img alt="Photograph of two cables, one with a red end and the other with a black end. Both have a silver connection with a cylindrical core protruding from the connector." class="popimg" id="_i_0" onclick="loadImageFromPage(this);" src="https://oli.cmu.edu/repository/webcontent/d826575d0a0001dc3e9f244fa018c560/PCH11/webcontent/PCH11/image1.png" title="Photograph of two cables, one with a red end and the other with a black end. Both have a silver connection with a cylindrical core protruding from the connector."/></span>
+<p id="N1069A" lang="">Fiber-optic cable. Photo used under CC-BY-NC-ND license from<span> </span><a href="https://flic.kr/p/4nU4yM" id="_i_1" lang="" target="_blank">Craig Rodway</a>.</p>
+<p lang=""><span>光纖電纜。根據Craig Rodway的CC-BY-NC-ND許可使用的照片。</span></p>
+</div>
+<p id="N106A2" lang="">Multimode fiber cables (MMF) contain a larger core than the single-mode variety. The core size for a multimode fiber is 62.5 microns. A micron is a very small unit of measurement—it is actually even smaller than the width of a human hair. MMF’s larger core enables multiple modes of travel for the light from one end of the cable to the other. This allows a single fiber to carry multiple signals across it, with each signal being transmitted at a slightly different reflective angle. When the light reaches the destination, the signals are then converted back into 1s and 0s and passed to the computer by the network interface card. Multimode fiber is commonly used in shorter distance fiber connections, such as from a router to a switch, a switch to a switch, or a server to a switch.</p>
+<p id="N106A5" lang="">Single-mode fiber cables (SMF) contain a much smaller core than the multimode variety. The core size for SMF is 10 microns. SMF’s smaller core only allows for a single mode of travel for the light from one end of the cable to the other. This straight-through connection allows for data to travel longer distances without a repeater than it can travel using MMF. When the light reaches the destination, the signals are then converted back into 1s and 0s and passed to the computer by the network interface card. Single mode fiber is commonly used in very long distance fiber connections, such as a backbone connection from one local area network to another.</p>
+<div class="imagewrap"><br/>多模光纜（MMF）的芯線比單模光纜大。多模光纖的纖芯尺寸為62.5微米。微米是非常小的測量單位，實際上甚至比人類頭髮的寬度還小。 MMF的較大芯線實現了從電纜一端到另一端的多種傳播模式。這樣一來，單根光纖就可以在其上傳輸多個信號，而每個信號都以稍微不同的反射角傳輸。當光線到達目的地時，信號然後被轉換回1和0，並通過網絡接口卡傳遞到計算機。多模光纖通常用於較短距離的光纖連接中，例如從路由器到交換機，從交換機到交換機或從服務器到交換機。<br/><br/>單模光纜（SMF）的芯線比多模光纜小得多。 SMF的芯尺寸為10微米。 SMF的較小芯線僅允許光從電纜一端到另一端的單一傳播模式。這種直通連接允許數據在沒有中繼器的情況下傳輸的距離比使用MMF傳輸的距離更長。當光線到達目的地時，信號然後被轉換回1s和0s，並通過網絡接口卡傳遞到計算機。單模光纖通常用於超長距離的光纖連接中，例如從一個局域網到另一個局域網的骨干連接。</div>
+<div class="imagewrap"></div>
+<div class="imagewrap"></div>
+<div class="imagewrap"><strong>Fiber-Optic Cable Connectors(光纖電纜連接器)</strong></div>
+</div>
+</div>
+<div class="section" id="fiber_connectors">
+<div class="sectionContain">
+<p id="N106B2" lang="">Fiber cables only come in the two types discussed above: single-mode and multimode. However, the ends of each of these cables come in four varieties.</p>
+<p id="N106B5" lang="">The subscriber connector (SC) is a fiber-optic cable connector that uses a push-pull mechanism to latch into the port, similar to common audio and video cables. If you want to enable bidirectional transmission for sending and receiving data, you need to have two fiber cables, so sometimes a dual SC connector is used.</p>
+<p id="N106B8" lang="">The straight tip (ST) connector is a fiber-optic cable connector that uses a bayonet plug and socket. It was the first de facto standard connector for most commercial wiring using fiber cables and it is very commonly found in fiber networks.</p>
+<p id="N106BB" lang="">The Lucent connector (LC) is a miniaturized version of the fiber-optic SC connector. It looks somewhat like the SC, but is half the size, with a 1.25 mm ferrule instead of 2.5 mm, making it very useful when connecting multiple devices in a small area, such as on a 24-port switch’s front panel.</p>
+<p id="N106BE" lang="">The mechanical transfer-registered jack (MT-RJ) connector is a fiber-optic cable connector that is very popular for small-form-factor devices due to its small size. This connector houses two fibers and mates with locating pins on the plug. These connectors are commonly found connecting a switch to a patch panel, because both devices have a limited area on their front panels.</p>
+<p>光纖電纜僅屬於上述兩種類型：單模和多模。但是，每條電纜的末端都有四種。</p>
+<p>用戶連接器（SC）是一種光纖電纜連接器，與普通的音頻和視頻電纜類似，它使用推挽機制鎖入端口。如果要啟用雙向傳輸以發送和接收數據，則需要兩條光纖電纜，因此有時會使用雙SC連接器。</p>
+<p>筆直（ST）連接器是使用卡口插頭和插座的光纖電纜連接器。它是大多數使用光纖電纜進行商業佈線的第一個事實上的標準連接器，並且在光纖網絡中非常常見。</p>
+<p>朗訊連接器（LC）是光纖SC連接器的微型版本。它看上去有點像SC，但尺寸只有一半，只有1.25毫米而不是2.5毫米的套圈，因此在小區域（例如24端口交換機的前面板）連接多個設備時非常有用。</p>
+<p>機械傳輸註冊插孔（MT-RJ）連接器是一種光纖電纜連接器，由於其尺寸小，在小型設備中非常受歡迎。該連接器容納兩根光纖，並與插頭上的定位銷配對。通常發現這些連接器將開關連接到配線架，因為兩個設備的前面板都有有限的區域。</p>
+</div>
+</div>
